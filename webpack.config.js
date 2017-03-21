@@ -3,23 +3,47 @@ const path = require('path');
 const client = {
     
     entry: {
-            "index": path.resolve(__dirname, 'client/index.js')
+            "index": path.resolve(__dirname, 'client/js/index.jsx')
     },
+    
+    resolve: {
+        modules: [
+              path.resolve(__dirname, "client/js")
+            , path.resolve(__dirname, "client/css")
+            , "node_modules"],
+    },
+    
     output: {
             path: path.resolve(__dirname, 'public/js'),
             filename: '[name].bundle.js',
-            library: "THIICalLib"
+            library: "THIICalExport"
     },
+    
     module: {
-            rules: [{
+            rules: [
+                {
                     test: /\.(js|jsx)$/,
-                    use: 'babel-loader'
-            }]
+                    use: {
+                        loader: 'babel-loader',
+                        options: {
+                            presets:["es2016", "stage-0", "react"]
+                        }
+                    }
+                },
+                {
+                    test: /\.scss/,
+                    use: [
+                        'style-loader',
+                        {
+                            loader: 'css-loader',
+                            options: { root: '.' }
+                        },
+                        'sass-loader'
+                    ]
+                }
+            ]
     }
     
 };
-
-
-
 
 module.exports = [client];

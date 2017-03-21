@@ -1,0 +1,42 @@
+:local(#spinner) {
+  
+    height: 50px;
+    width: 50px;
+
+    -webkit-animation:spin 1s linear infinite;
+       -moz-animation:spin 1s linear infinite;
+            animation:spin 1s linear infinite;
+
+    .outer {
+        position:relative;
+        box-sizing:border-box;
+        width : 50px;
+        height: 50px;
+        background: black;
+        border-radius:50px;
+    }
+    
+    .inner1 {
+        position:absolute;
+        box-sizing:border-box;
+        top:3px;
+        left:3px;
+        width : 44px;
+        height: 44px;
+        background: #f5f5f5;
+        border-radius:46px;
+    }
+    
+    .inner2 {
+        position:absolute;
+        box-sizing:border-box;
+        width : 50px;
+        height: 50px;
+        background: #f5f5f5;
+        border-bottom-left-radius:50px;
+    }
+}
+
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+   @-moz-keyframes spin { 100% { -moz-transform:    rotate(360deg); } }
+        @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }

@@ -1,0 +1,42 @@
+:local(#authForm) {
+    
+    .form-group {
+        
+        margin-bottom:0;
+         
+        input {
+            font-size: 16px;
+            padding: 10px;
+            box-sizing: border-box;
+            height: auto;
+        }
+        
+        
+         
+    }
+    
+    button[type=submit] {
+    
+        width: 100%;
+        
+    }
+    
+    .info {
+        
+        margin-top:1em;
+        
+    }
+    
+}
+
+:local(#username) {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+:local(#password) {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}

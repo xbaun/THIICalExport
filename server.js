@@ -1,124 +1,99 @@
-const express = require('express'),
-      app     = express(),
-      server  = require('http').Server(app),
-      io      = require('socket.io')(server),
-      _       = require('lodash'),
-      Promise = require('promise'),
-      moment  = require('moment'),
-      ical    = require('ical-generator'),
-      unirest = require('unirest');
-
+const express  = require('express'),
+      app      = express(),
+      server   = require('http').Server(app),
+      io       = require('socket.io')(server),
+      _        = require('lodash'),
+      ical     = require('ical-generator'),
+      Joi      = require('joi');
+      
+      
+      
 server.listen(process.env.PORT, process.env.IP);
 app   .use(express.static('public'));
 
+const THIRestClient = require('./server/THIRestClient.js');
+
 io.on('connection', function(socket) {
    
-   socket.on('generate-ical', function(login) {
-       
-       console.log(`generate ical for: ${login.username}`);
-       
-       THIApiClient.getSession(login).then((session) => {
-          
-          THIApiClient.getCalendar(session).then((data) => {
-             
-             var cal = ical({domain: `example.com`, name: `Calendar for ${login.username}`});
-             
-             var events = data.data[3];
-             
-             if (!_.isEmpty(events)) {
-                events.forEach((event) => {
-                   
-                   cal.createEvent({
-                      start      : moment(`${event.datum} ${event.von}`).toDate(),
-                      end        : moment(`${event.datum} ${event.bis}`).toDate(),
-                      summary    : event.veranstaltung,
-                      description:`Dozent: ${event.dozent}`
-                   })
-                   
-                });
-             }
-             
-             
-             socket.emit('ongenerated', cal.toString());
-             
-             
-          })
-          
-       })
+   socket.on('auth', function (credentials) {
 
+      THIRestClient.getSession(credentials)
+         .then (function (session) {
+            
+            socket.emit('auth', { state: 'SUCCESS' });
+            socket.emit('generate-ical', { state: 'STARTED' });
+           
+            THIRestClient.getCalendar(session)
+               .then (function (res) {
+                  
+                   buildICal(res, credentials)
+                     .then (function (data) {
+
+                        socket.emit('generate-ical', {
+                           state: 'SUCCESS',
+                           data: data
+                        });
+                     })
+                     .catch(function (err) {
+                        
+                        socket.emit('generate-ical', {
+                           state: 'FAILURE',
+                           error: 'BUILD ICAL FAILED',
+                           input: err.event
+                        });
+                     });
+               })
+               .catch(function (err) {
+                  
+                  socket.emit('generate-ical', {
+                     state: 'FAILURE'
+                  });
+               });
+         })
+         .catch(function (err) {
+            
+             socket.emit('auth', { state: 'FAILURE', detail: err });
+            
+         });
    });
 });
 
+const schemaTHICalEvent = Joi.object().keys({
+    von   : Joi.string(),
+    bis   : Joi.string(),
+    dozent: Joi.string(),
+}).unknown();
 
 
-
-
-const THIAPI_BASE_URL    = "https://hiplan.thi.de/webservice/production/index.php";
-const THIAPI_BASE_HEADER = {
-   "Accept"        : "application/json, text/plain; q=0.9, text/html;q=0.8,",
-   "Accept-Charset": "UTF-8, *;q=0.8",
-   "Content-Type"  : "application/x-www-form-urlencoded",
-   "User-Agent"    : "Embarcadero RESTClient/1.0, Embarcadero URI Client/1.0"
-}
-
-
-const THIApiClient = {
+function buildICal(data, credentials) {
    
-   getSession: function (login) {
-    
-      return new Promise(function (resolve, reject) {
+   return new Promise(function (resolve, reject) {
+      
+      var output = ical({domain: `example.com`, name: `Calendar for ${credentials.username}`});
+      var events = data.data[3];
+      
+      if (!_.isEmpty(events)) {
          
-         var req = unirest.post(THIAPI_BASE_URL)
-            .type("application/x-www-form-urlencoded")
-            .headers(THIAPI_BASE_HEADER)
-            .send({
-               service : "session",
-               method  : "open",
-               format  : "json",
-               username: login.username,
-               passwd: login.password
-            })
-            .end(function (response) {
-              
-               var session = _.get(response.body, 'data');
-                  
-               if (_.isArray(session)) {
-                  resolve(session[0]);
-               } else {
-                  reject();
-               }
+         events.forEach((event) => {
             
-            });
+            var res = Joi.validate(event, schemaTHICalEvent);
+            
+            if (!res.error) {
+            
+               output.createEvent({
+                  start      : new Date(`${event.datum} ${event.von}`),
+                  end        : new Date(`${event.datum} ${event.bis}`),
+                  summary    : event.veranstaltung,
+                  description:`Dozent: ${event.dozent}`
+               })
+            } else {
+               reject({event});
+               return false;
+            }
+         });
          
-      });
-   },
-   
-   getCalendar: function (session) {
-   
-      return new Promise(function (resolve, reject) {
+         resolve(output.toString());
          
-         var date = moment();
-         var req = unirest.post(THIAPI_BASE_URL)
-            .type("application/x-www-form-urlencoded")
-            .headers(THIAPI_BASE_HEADER)
-            .send({
-               service: "thiapp",
-               method : "stpl",
-               format : "json",
-               session: session,
-               day    : date.format("DD"),
-               month  : date.format("MM"),
-               year   : date.format("YYYY"),
-               details: 0
-            })
-            .end(function (response) {
-               
-               resolve(response.body);
-               
-            });
-      });
-   }
+      }
+   });
 }
-
-
-
