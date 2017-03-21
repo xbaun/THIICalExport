@@ -26,7 +26,7 @@ const client = {
                     use: {
                         loader: 'babel-loader',
                         options: {
-                            presets:["es2016", "stage-0", "react"]
+                            presets:["react", "es2015", "stage-0"]
                         }
                     }
                 },
