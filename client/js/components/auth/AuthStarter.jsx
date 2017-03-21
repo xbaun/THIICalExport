@@ -57,7 +57,7 @@ class AuthStarter_ extends React.Component {
                     
                     <div className="form-group">
                         <label className="sr-only" htmlFor="password">Password</label>
-                        <input type="password" value={this.state.password} onChange={this.handlePasswordChange}  className="form-control" id={style['password']} placeholder="Password" /> 
+                        <input type="password" value={this.state.password} onChange={this.handlePasswordChange}  className="form-control" id={style['password']} placeholder="Password" />
                     </div>
                 
                 
@@ -66,7 +66,7 @@ class AuthStarter_ extends React.Component {
                     <div className="info">
                         <div style={{display: 'flex'}}>
                             <div style={{flex: '0 0 1ex'}}> * </div>
-                            <div>No login information will be logged nor stored</div>
+                            <div>Login credentials will not be stored.</div>
                         </div>
                     </div>
                 
