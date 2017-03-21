@@ -10,7 +10,7 @@ import reducers     from './redux/reducers'
 import io           from './connection/io';
 import ioMiddleware from './redux/middleware/socketio';
 import sfMiddleware from './redux/middleware/save-file';
-import { debugGlobStateMiddleware } from './redux/middleware/debug-state'
+//import { debugGlobStateMiddleware } from './redux/middleware/debug-state'
 
 import * as authActions    from 'redux/actions/auth';
 import * as genICalActions from 'redux/actions/generate-ical';

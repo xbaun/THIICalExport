@@ -5,13 +5,12 @@ const express  = require('express'),
       _        = require('lodash'),
       ical     = require('ical-generator'),
       Joi      = require('joi');
-      
-      
-      
+
+const THIRestClient
+   = require('./server/THIRestClient.js');
+
 server.listen(process.env.PORT, process.env.IP);
 app   .use(express.static('public'));
-
-const THIRestClient = require('./server/THIRestClient.js');
 
 io.on('connection', function(socket) {
    
@@ -59,9 +58,11 @@ io.on('connection', function(socket) {
 });
 
 const schemaTHICalEvent = Joi.object().keys({
-    von   : Joi.string(),
-    bis   : Joi.string(),
-    dozent: Joi.string(),
+    von          : Joi.string(),
+    bis          : Joi.string(),
+    dozent       : Joi.string(),
+    raum         : Joi.string(),
+    veranstaltung: Joi.string(),
 }).unknown();
 
 
@@ -69,7 +70,7 @@ function buildICal(data, credentials) {
    
    return new Promise(function (resolve, reject) {
       
-      var output = ical({domain: `example.com`, name: `Calendar for ${credentials.username}`});
+      var output = ical({name: `Calendar for ${credentials.username}`});
       var events = data.data[3];
       
       if (!_.isEmpty(events)) {
@@ -84,7 +85,7 @@ function buildICal(data, credentials) {
                   start      : new Date(`${event.datum} ${event.von}`),
                   end        : new Date(`${event.datum} ${event.bis}`),
                   summary    : event.veranstaltung,
-                  description:`Dozent: ${event.dozent}`
+                  description:`Dozent: ${event.dozent}, Raum: ${event.raum}`,
                })
             } else {
                reject({event});

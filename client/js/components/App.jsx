@@ -48,7 +48,7 @@ export class App_ extends React.Component {
                 <div className="jumbotron header">
                     <div className="container">
                         <h1>THI iCal Export</h1>
-                        <p>Export your THI Student Calendar to iCal format</p>
+                        <p>Export your THI timetable to iCal</p>
                     </div>
                 </div>
 

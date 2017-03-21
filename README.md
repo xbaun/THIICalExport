@@ -1,6 +1,6 @@
 # THI iCal Export
 
-**THI iCal Export** let's you extract your THI calendar and export it to iCal.
+**THI iCal Export** lets you extract your THI calendar and export it to iCal.
 
 ## THI WebAPI Doku
 

@@ -7,7 +7,7 @@ const unirest = require('unirest'),
 const BASEURL = 'https://hiplan.thi.de/webservice/production/index.php';
 
 const HEADERS = {
-    'User-Agent': 'Embarcadero RESTClient/1.0, Embarcadero URI Client/1.0', // "Yet Another THIApp"
+    'User-Agent': 'THIICalExport (https://github.com/xbaun/THIICalExport)',
     'Accept'    : 'application/json'
 }
 
