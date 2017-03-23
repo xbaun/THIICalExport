@@ -93,9 +93,7 @@ const server = {
                         {
                             loader: 'css-loader',
                             options: { 
-                                root: '.' ,
-                                modules: true,
-                                localIdentName: '[path][name]_[local]--[hash:base64:8]',
+                                root: '.'
                             }
                         },
                         'sass-loader'
