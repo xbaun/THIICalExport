@@ -1,0 +1,81 @@
+#client-css-AuthStarter_authForm--2oIS7Nbj .client-css-AuthStarter_form-group--2GLrgrKr {
+  margin-bottom: 0; }
+  #client-css-AuthStarter_authForm--2oIS7Nbj .client-css-AuthStarter_form-group--2GLrgrKr input {
+    font-size: 16px;
+    padding: 10px;
+    box-sizing: border-box;
+    height: auto; }
+
+#client-css-AuthStarter_authForm--2oIS7Nbj button[type=submit] {
+  width: 100%; }
+
+#client-css-AuthStarter_authForm--2oIS7Nbj .client-css-AuthStarter_info--2fYGk1i5 {
+  margin-top: 1em; }
+
+#client-css-AuthStarter_username--11QxgARD {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0; }
+
+#client-css-AuthStarter_password--bj-HSf4u {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0; }
+#client-css-AuthFailure_authFailure--2B7I8jE6 {
+  margin-top: 1em; }
+#client-css-Spinner_spinner--2YCL_tKf {
+  height: 50px;
+  width: 50px;
+  -webkit-animation: client-css-Spinner_spin--28wiQoJB 1s linear infinite;
+  -moz-animation: client-css-Spinner_spin--28wiQoJB 1s linear infinite;
+  animation: client-css-Spinner_spin--28wiQoJB 1s linear infinite; }
+  #client-css-Spinner_spinner--2YCL_tKf .client-css-Spinner_outer--3jvmpZD9 {
+    position: relative;
+    box-sizing: border-box;
+    width: 50px;
+    height: 50px;
+    background: black;
+    border-radius: 50px; }
+  #client-css-Spinner_spinner--2YCL_tKf .client-css-Spinner_inner1--1ObqDyO- {
+    position: absolute;
+    box-sizing: border-box;
+    top: 3px;
+    left: 3px;
+    width: 44px;
+    height: 44px;
+    background: #f5f5f5;
+    border-radius: 46px; }
+  #client-css-Spinner_spinner--2YCL_tKf .client-css-Spinner_inner2--29uNbgnp {
+    position: absolute;
+    box-sizing: border-box;
+    width: 50px;
+    height: 50px;
+    background: #f5f5f5;
+    border-bottom-left-radius: 50px; }
+
+@-webkit-keyframes client-css-Spinner_spin--28wiQoJB {
+  100% {
+    -webkit-transform: rotate(360deg); } }
+
+@-moz-keyframes client-css-Spinner_spin--28wiQoJB {
+  100% {
+    -moz-transform: rotate(360deg); } }
+
+@keyframes client-css-Spinner_spin--28wiQoJB {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+.client-css-Progress_progress--1iuwQQ-9 {
+  width: 0;
+  margin: 0 auto;
+  padding: 1.5em; }
+body {
+  background: #f5f5f5; }
+
+.client-css-App_center-container--1_fAPdWC {
+  max-width: 330px;
+  margin: 0 auto;
+  padding: 1.5em; }
+
+.client-css-App_header--2NQ_9Pgu {
+  text-align: center; }

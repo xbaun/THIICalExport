@@ -1,16 +1,28 @@
-const express  = require('express'),
-      app      = express(),
-      server   = require('http').Server(app),
-      io       = require('socket.io')(server),
-      _        = require('lodash'),
-      ical     = require('ical-generator'),
-      Joi      = require('joi');
+const express        = require('express'),
+      app            = express(),
+      server         = require('http').Server(app),
+      io             = require('socket.io')(server),
+      _              = require('lodash'),
+      ical           = require('ical-generator'),
+      Joi            = require('joi');
+      
+      
+var ssr;
+
+require('./public/js/server.bundle.js').THIICalExport.init((html) => {
+  ssr = html;
+});
+
 
 const THIRestClient
    = require('./server/THIRestClient.js');
 
 server.listen(process.env.PORT, process.env.IP);
-app   .use(express.static('public'));
+
+app.use(express.static('public'));
+app.get('/', (req, res) => {
+   res.send(ssr);
+})
 
 io.on('connection', function(socket) {
    
