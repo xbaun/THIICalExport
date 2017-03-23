@@ -15,7 +15,7 @@ const client = {
     },
     
     output: {
-            path: path.resolve(__dirname, 'public/js'),
+            path: path.resolve(__dirname, 'public'),
             filename: '[name].bundle.js',
             library: "THIICalExport"
     },
@@ -33,17 +33,23 @@ const client = {
                 },
                 {
                     test: /\.scss/,
-                    use: [
-                        'style-loader',
+                    use: ExtractTextPlugin.extract({use: [
                         {
                             loader: 'css-loader',
-                            options: { root: '.' }
+                            options: { 
+                                root: '.' 
+                            }
                         },
                         'sass-loader'
-                    ]
+                    ]})
                 }
             ]
-    }
+    },
+    
+    plugins: [
+        new ExtractTextPlugin("styles.css"),
+    ]
+    
     
 };
 
@@ -64,7 +70,7 @@ const server = {
     },
     
     output: {
-            path: path.resolve(__dirname, 'public/js'),
+            path: path.resolve(__dirname, 'public'),
             filename: '[name].bundle.js',
             library: "THIICalExport",
             libraryTarget: 'commonjs'

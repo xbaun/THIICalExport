@@ -9,7 +9,7 @@ const express        = require('express'),
       
 var ssr;
 
-require('./public/js/server.bundle.js').THIICalExport.init((html) => {
+require('./public/server.bundle.js').THIICalExport.init((html) => {
   ssr = html;
 });
 
