@@ -1,0 +1,681 @@
+{
+	"info": {
+		"name": "THIREST",
+		"_postman_id": "f25a9d27-a3dd-072a-12c9-977d9c95868a",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Session",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6b8031cc-80c3-46db-a369-406fe622c89a",
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"sessionID\", jsonData.data[0]);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "service",
+							"value": "session",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "method",
+							"value": "open",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "format",
+							"value": "json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "passwd",
+							"value": "{{password}}",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://hiplan.thi.de/webservice/production/index.php",
+					"protocol": "https",
+					"host": [
+						"hiplan",
+						"thi",
+						"de"
+					],
+					"path": [
+						"webservice",
+						"production",
+						"index.php"
+					]
+				},
+				"description": ""
+			},
+			"response": [
+				{
+					"id": "e0f92107-fa5e-42e4-9d61-d1016f3e0941",
+					"name": "Create Session",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "service",
+									"value": "session",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "method",
+									"value": "open",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "format",
+									"value": "json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "passwd",
+									"value": "{{password}}",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://hiplan.thi.de/webservice/production/index.php",
+							"protocol": "https",
+							"host": [
+								"hiplan",
+								"thi",
+								"de"
+							],
+							"path": [
+								"webservice",
+								"production",
+								"index.php"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"_postman_previewtype": "text",
+					"header": [
+						{
+							"key": "Cache-Control",
+							"value": "no-store, no-cache, must-revalidate",
+							"name": "Cache-Control",
+							"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+						},
+						{
+							"key": "Connection",
+							"value": "Keep-Alive",
+							"name": "Connection",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"key": "Content-Length",
+							"value": "100",
+							"name": "Content-Length",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8",
+							"name": "Content-Type",
+							"description": "The mime type of this content"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 10 Jan 2018 15:00:03 GMT",
+							"name": "Date",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 19 Nov 1981 08:52:00 GMT",
+							"name": "Expires",
+							"description": "Gives the date/time after which the response is considered stale"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5, max=100",
+							"name": "Keep-Alive",
+							"description": "Custom header"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache",
+							"name": "Pragma",
+							"description": "Implementation-specific headers that may have various effects anywhere along the request-response chain."
+						},
+						{
+							"key": "Server",
+							"value": "Apache",
+							"name": "Server",
+							"description": "A name for the server"
+						}
+					],
+					"cookie": [],
+					"responseTime": 368,
+					"body": "{\"date\":\"10.01.2018\",\"time\":\"16:00:03\",\"data\":[\"adnm1l1us8njogaps3g0m1p9j7\",\"mam1205\",3],\"status\":0}"
+				}
+			]
+		},
+		{
+			"name": "Verify Session",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "service",
+							"value": "session",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "method",
+							"value": "isalive",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "format",
+							"value": "json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "session",
+							"value": "{{sessionID}}",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://hiplan.thi.de/webservice/production/index.php",
+					"protocol": "https",
+					"host": [
+						"hiplan",
+						"thi",
+						"de"
+					],
+					"path": [
+						"webservice",
+						"production",
+						"index.php"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "getPersData",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "service",
+							"value": "thiapp",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "method",
+							"value": "persdata",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "format",
+							"value": "json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "session",
+							"value": "{{sessionID}}",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://hiplan.thi.de/webservice/production/index.php",
+					"protocol": "https",
+					"host": [
+						"hiplan",
+						"thi",
+						"de"
+					],
+					"path": [
+						"webservice",
+						"production",
+						"index.php"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "getDozenten",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "service",
+							"value": "thiapp",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "method",
+							"value": "stpllecturers",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "format",
+							"value": "json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "session",
+							"value": "{{sessionID}}",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://hiplan.thi.de/webservice/production/index.php",
+					"protocol": "https",
+					"host": [
+						"hiplan",
+						"thi",
+						"de"
+					],
+					"path": [
+						"webservice",
+						"production",
+						"index.php"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "getExams",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "service",
+							"value": "thiapp",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "method",
+							"value": "exams",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "format",
+							"value": "json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "session",
+							"value": "{{sessionID}}",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://hiplan.thi.de/webservice/production/index.php",
+					"protocol": "https",
+					"host": [
+						"hiplan",
+						"thi",
+						"de"
+					],
+					"path": [
+						"webservice",
+						"production",
+						"index.php"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "getRooms",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "service",
+							"value": "thiapp",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "method",
+							"value": "rooms",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "format",
+							"value": "json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "session",
+							"value": "{{sessionID}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "day",
+							"value": "{{current_day}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "month",
+							"value": "{{current_month}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "year",
+							"value": "{{current_year}}",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://hiplan.thi.de/webservice/production/index.php",
+					"protocol": "https",
+					"host": [
+						"hiplan",
+						"thi",
+						"de"
+					],
+					"path": [
+						"webservice",
+						"production",
+						"index.php"
+					]
+				},
+				"description": "Gib alle Räume für die jeweilige Kalenderwoche zurück"
+			},
+			"response": []
+		},
+		{
+			"name": "GetMensa",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d212ccdd-4d48-47bc-b863-9e8079051859",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "service",
+							"value": "thiapp",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "method",
+							"value": "mensa",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "format",
+							"value": "json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "session",
+							"value": "{{sessionID}}",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://hiplan.thi.de/webservice/production/index.php",
+					"protocol": "https",
+					"host": [
+						"hiplan",
+						"thi",
+						"de"
+					],
+					"path": [
+						"webservice",
+						"production",
+						"index.php"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetCalendarData",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "90731cc5-db9e-417f-9985-95a2333d52d9",
+						"type": "text/javascript",
+						"exec": [
+							"var currentTime  = new Date();",
+							"postman.setEnvironmentVariable(\"current_day\", currentTime.getDate());",
+							"postman.setEnvironmentVariable(\"current_month\", currentTime.getMonth()+1);",
+							"postman.setEnvironmentVariable(\"current_year\", currentTime.getFullYear());"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "service",
+							"value": "thiapp",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "method",
+							"value": "stpl",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "format",
+							"value": "json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "session",
+							"value": "{{sessionID}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "details",
+							"value": "0",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "day",
+							"value": "{{current_day}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "month",
+							"value": "{{current_month}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "year",
+							"value": "{{current_year}}",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://hiplan.thi.de/webservice/production/index.php",
+					"protocol": "https",
+					"host": [
+						"hiplan",
+						"thi",
+						"de"
+					],
+					"path": [
+						"webservice",
+						"production",
+						"index.php"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
